@@ -2,7 +2,6 @@ import { useDispatch } from "react-redux";
 import { useEffect } from 'react'
 import { requestsActionCreators } from '../state'
 import { useTypedSelector } from '../hooks/useTypedSelector'
-import { request } from "http";
 
 const RequestsList: React.FC = () => {
     

@@ -14,10 +14,16 @@ const requests = [
 
 
 // api
-app.get('/requests', (req, res) => {
+app.get('/requests', async (req, res) => {
 	setTimeout(() => {
 		res.json(requests)
-	}, 500)
+	}, 1000)
+})
+
+app.post('/request', async (req, res) => {
+	setTimeout(() => {
+		res.json(req.body)
+	}, 1000)
 })
 
 

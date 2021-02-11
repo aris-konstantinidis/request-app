@@ -1,19 +1,25 @@
 import { useState } from "react"
+import { useDispatch } from 'react-redux'
+import { requestsActionCreators } from '../state'
 
 
 const RequestForm: React.FC = () => {
+    const dispatch = useDispatch()
 
     const [name, setName] = useState('')
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        setName('')
+        setTitle('')
+        setDescription('')
         e.preventDefault()
-        console.log(e)
+        dispatch(requestsActionCreators.postRequest({name, title, description}))
     } 
 
-    return <form onSubmit={handleSubmit} className="shadow border mb-4 p-3">
-        <h3 className="mb-3">Request Form</h3>
+    return <form onSubmit={handleSubmit} className="shadow border mb-4 p-4">
+        <h5 className="mb-3">Request Form</h5>
         <div className="mb-3">
             <label className="form-label">Name</label>
             <input value={name} onChange={(e) => setName(e.target.value)} className="form-control"/>
@@ -26,7 +32,7 @@ const RequestForm: React.FC = () => {
             <label className="form-label">Description</label>
             <textarea value={description} onChange={(e) => setDescription(e.target.value)} className="form-control"></textarea>
         </div>
-        <button className="btn btn-primary">Submit</button>
+        <button className="btn btn-primary" disabled={!Boolean(name) || !Boolean(title) || !Boolean(description)}>Submit</button>
     </form>
 }
 
