@@ -4,7 +4,9 @@ import { RequestsActions } from '../actions/requestsActions'
 export interface Request {
     name: string,
     title: string,
-    description: string
+    description: string,
+    _id?: string,
+    date?: string
 }
 
 interface RequestsState {
