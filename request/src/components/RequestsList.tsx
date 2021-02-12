@@ -16,13 +16,17 @@ const RequestsList: React.FC = () => {
         dispatch(requestsActionCreators.fetchRequests())
     }, [])
     
+    const log = (id: string) => {
+        console.log(id)
+    }
+
     
     return (
         <div>
             {loading && <p>Loading...</p>}
             {error && <p>{error}</p>}
             {requests && requests.map((item) => {
-                return <SingleRequest key={item._id} {...item} />
+                return <SingleRequest key={item._id} log={log} item={item} />
             })}
         </div>
     )
