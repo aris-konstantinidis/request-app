@@ -57,14 +57,14 @@ export const deleteRequest = (id: string) => { // also async --> thunk
     }
 }
 
-export const voteRequest = (id: string) => { // also async --> thunk
+export const voteRequest = (id: string, vote: number) => { // also async --> thunk
     return async (dispatch: Dispatch<RequestsActions>) => {
         dispatch({ type: RequestsActionType.VOTE_REQUEST })
         
         try {
-            const { data } = await axios.post("http://localhost:9000/vote-request", {id: id})
+            const { data } = await axios.post("http://localhost:9000/vote-request", {id, vote})
             if (data) {
-                dispatch({ type: RequestsActionType.VOTE_REQUEST_SUCCESS, payload: id })
+                dispatch({ type: RequestsActionType.VOTE_REQUEST_SUCCESS, payload: {id, vote} })
             } else {
                 throw new Error('Could not add vote') // this will be attached to the message property of the error object and will fit the catch case
             }

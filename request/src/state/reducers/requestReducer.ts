@@ -61,8 +61,8 @@ const requestsReducer = (state: RequestsState = initialState, action: RequestsAc
         case RequestsActionType.VOTE_REQUEST:
             return { loading: true, error: null, requests: state.requests }
         case RequestsActionType.VOTE_REQUEST_SUCCESS:
-            let index = state.requests.findIndex(item => item._id === action.payload)
-            state.requests[index].votes = state.requests[index].votes + 1
+            let index = state.requests.findIndex(item => item._id === action.payload.id)
+            state.requests[index].votes = state.requests[index].votes + action.payload.vote
             return { loading: false, error: null, requests: state.requests }
         case RequestsActionType.VOTE_REQUEST_ERROR:
             return { loading: false, error: action.payload, requests: state.requests }

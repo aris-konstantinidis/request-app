@@ -43,9 +43,13 @@ interface DeleteRequestErrorAction {
 interface VoteRequestAction {
     type: RequestsActionType.VOTE_REQUEST
 }
+interface VotePayload {
+    id: string,
+    vote: number
+}
 interface VoteRequestSuccessAction {
     type: RequestsActionType.VOTE_REQUEST_SUCCESS,
-    payload: string
+    payload: VotePayload
 }
 interface VoteRequestErrorAction {
     type: RequestsActionType.VOTE_REQUEST_ERROR,

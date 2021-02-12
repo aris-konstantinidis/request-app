@@ -33,7 +33,7 @@ app.post("/delete-request", async (req, res) => {
 })
 
 app.post('/vote-request', async (req, res) => {
-	const update = await Request.findOneAndUpdate({_id :req.body.id}, {$inc : {'votes': 1}})
+	const update = await Request.findOneAndUpdate({_id :req.body.id}, {$inc : {'votes': req.body.vote}})
 	res.json(update)
 })
 
