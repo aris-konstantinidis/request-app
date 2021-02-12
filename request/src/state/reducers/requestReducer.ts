@@ -1,12 +1,17 @@
 import { RequestsActionType }from '../action-types/requestsActionTypes'
 import { RequestsActions } from '../actions/requestsActions'
 
-export interface Request {
+export interface Request extends RequestDraft {
+    _id: string,
+    date: string,
+    votes: number
+}
+
+
+export interface RequestDraft {
     name: string,
     title: string,
     description: string,
-    _id?: string,
-    date?: string
 }
 
 interface RequestsState {
@@ -42,6 +47,25 @@ const requestsReducer = (state: RequestsState = initialState, action: RequestsAc
         case RequestsActionType.POST_REQUEST_ERROR:
             return { loading: false, error: action.payload, requests: state.requests }
 
+
+        // handle removal of requests
+        case RequestsActionType.DELETE_REQUEST:
+            return { loading: true, error: null, requests: state.requests }
+        case RequestsActionType.DELETE_REQUEST_SUCCESS:
+            return { loading: false, error: null, requests: state.requests.filter(item => item._id !== action.payload) }
+        case RequestsActionType.DELETE_REQUEST_ERROR:
+            return { loading: false, error: action.payload, requests: state.requests }
+
+
+        // handle votes
+        case RequestsActionType.VOTE_REQUEST:
+            return { loading: true, error: null, requests: state.requests }
+        case RequestsActionType.VOTE_REQUEST_SUCCESS:
+            let index = state.requests.findIndex(item => item._id === action.payload)
+            state.requests[index].votes = state.requests[index].votes + 1
+            return { loading: false, error: null, requests: state.requests }
+        case RequestsActionType.VOTE_REQUEST_ERROR:
+            return { loading: false, error: action.payload, requests: state.requests }
 
         // on initialization
         default:

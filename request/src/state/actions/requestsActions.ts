@@ -27,7 +27,34 @@ interface PostRequestErrorAction {
 }
 
 
+interface DeleteRequestAction {
+    type: RequestsActionType.DELETE_REQUEST
+}
+interface DeleteRequestSuccessAction {
+    type: RequestsActionType.DELETE_REQUEST_SUCCESS,
+    payload: string
+}
+interface DeleteRequestErrorAction {
+    type: RequestsActionType.DELETE_REQUEST_ERROR,
+    payload: string
+}
+
+
+interface VoteRequestAction {
+    type: RequestsActionType.VOTE_REQUEST
+}
+interface VoteRequestSuccessAction {
+    type: RequestsActionType.VOTE_REQUEST_SUCCESS,
+    payload: string
+}
+interface VoteRequestErrorAction {
+    type: RequestsActionType.VOTE_REQUEST_ERROR,
+    payload: string
+}
+
+
 
 
 export type RequestsActions = FetchRequestsAction | FetchRequestsSuccessAction | FetchRequestsErrorAction |
-    PostRequestAction | PostRequestSuccessAction | PostRequestErrorAction
+    PostRequestAction | PostRequestSuccessAction | PostRequestErrorAction | DeleteRequestAction | DeleteRequestSuccessAction |
+    DeleteRequestErrorAction | VoteRequestAction | VoteRequestSuccessAction | VoteRequestErrorAction

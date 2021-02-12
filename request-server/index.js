@@ -27,6 +27,15 @@ app.post('/request', async (req, res) => {
 	res.json(await newRequest.save())
 })
 
+app.post("/delete-request", async (req, res) => {
+	const remove = await Request.deleteOne({_id: req.body.id})
+	res.json(remove)
+})
+
+app.post('/vote-request', async (req, res) => {
+	const update = await Request.findOneAndUpdate({_id :req.body.id}, {$inc : {'votes': 1}})
+	res.json(update)
+})
 
 
 
