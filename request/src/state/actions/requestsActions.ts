@@ -57,8 +57,22 @@ interface VoteRequestErrorAction {
 }
 
 
+interface EditRequestAction {
+    type: RequestsActionType.EDIT_REQUEST
+}
+interface EditRequestSuccessAction {
+    type: RequestsActionType.EDIT_REQUEST_SUCCESS,
+    payload: Request
+}
+interface EditRequestErrorAction {
+    type: RequestsActionType.EDIT_REQUEST_ERROR,
+    payload: string
+}
+
+
 
 
 export type RequestsActions = FetchRequestsAction | FetchRequestsSuccessAction | FetchRequestsErrorAction |
     PostRequestAction | PostRequestSuccessAction | PostRequestErrorAction | DeleteRequestAction | DeleteRequestSuccessAction |
-    DeleteRequestErrorAction | VoteRequestAction | VoteRequestSuccessAction | VoteRequestErrorAction
+    DeleteRequestErrorAction | VoteRequestAction | VoteRequestSuccessAction | VoteRequestErrorAction | EditRequestAction |
+    EditRequestSuccessAction | EditRequestErrorAction

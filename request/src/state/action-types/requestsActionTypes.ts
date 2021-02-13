@@ -14,5 +14,10 @@ export enum RequestsActionType {
 
     VOTE_REQUEST = 'vote_request',
     VOTE_REQUEST_SUCCESS = 'vote_request_success',
-    VOTE_REQUEST_ERROR = 'vote_request_error'
+    VOTE_REQUEST_ERROR = 'vote_request_error',
+
+
+    EDIT_REQUEST = 'edit_request',
+    EDIT_REQUEST_SUCCESS = 'edit_request_success',
+    EDIT_REQUEST_ERROR = 'edit_request_error'
 }

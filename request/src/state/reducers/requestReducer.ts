@@ -30,7 +30,7 @@ const initialState = {
 const requestsReducer = (state: RequestsState = initialState, action: RequestsActions): RequestsState => {
 
     switch (action.type) {
-
+        
         // handle fetch requests from server
         case RequestsActionType.FETCH_REQUESTS:
             return { loading: true, error: null, requests: [] }    
@@ -43,7 +43,7 @@ const requestsReducer = (state: RequestsState = initialState, action: RequestsAc
         case RequestsActionType.POST_REQUEST:
             return { loading: true, error: null, requests: state.requests }
         case RequestsActionType.POST_REQUEST_SUCCESS: 
-            return { loading: false, error: null, requests: [...state.requests, action.payload]}
+            return { loading: false, error: null, requests: [action.payload, ...state.requests]}
         case RequestsActionType.POST_REQUEST_ERROR:
             return { loading: false, error: action.payload, requests: state.requests }
 
@@ -66,6 +66,22 @@ const requestsReducer = (state: RequestsState = initialState, action: RequestsAc
             return { loading: false, error: null, requests: state.requests }
         case RequestsActionType.VOTE_REQUEST_ERROR:
             return { loading: false, error: action.payload, requests: state.requests }
+
+
+        // handle edits
+        case RequestsActionType.EDIT_REQUEST:
+            return { loading: true, error: null, requests: state.requests }
+        case RequestsActionType.EDIT_REQUEST_SUCCESS:
+            const stateCopy = [...state.requests]
+            let indx = stateCopy.findIndex(item => item._id === action.payload._id)
+            console.log(stateCopy[indx])
+            stateCopy[indx] = action.payload
+            console.log(stateCopy[indx])
+            return { loading: false, error: null, requests: stateCopy }
+        case RequestsActionType.EDIT_REQUEST_ERROR:
+            return { loading: false, error: action.payload, requests: state.requests }
+
+
 
         // on initialization
         default:

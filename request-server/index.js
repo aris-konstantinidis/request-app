@@ -38,5 +38,12 @@ app.post('/vote-request', async (req, res) => {
 })
 
 
+app.post('/edit-request', async (req, res) => {
+	const update = await Request.findOneAndUpdate({_id :req.body.id},
+		{$set : {'title': req.body.title, 'description': req.body.description}})
+	res.json(update)
+})
+
+
 
 app.listen(9000)

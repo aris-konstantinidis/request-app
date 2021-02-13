@@ -74,3 +74,21 @@ export const voteRequest = (id: string, vote: number) => { // also async --> thu
         }
     }
 }
+
+export const editRequest = (id: string, title: string, description: string ) => { // also async --> thunk
+    return async (dispatch: Dispatch<RequestsActions>) => {
+        dispatch({ type: RequestsActionType.EDIT_REQUEST })
+        
+        try {
+            const { data } = await axios.post("http://localhost:9000/edit-request", {id, title, description})
+            if (data) {
+                dispatch({ type: RequestsActionType.EDIT_REQUEST_SUCCESS, payload: data })
+            } else {
+                throw new Error('Could not edit request') // this will be attached to the message property of the error object and will fit the catch case
+            }
+
+        } catch (error) {
+            dispatch({ type: RequestsActionType.EDIT_REQUEST_ERROR, payload: error.message })
+        }
+    }
+}

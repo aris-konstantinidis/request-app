@@ -19,7 +19,7 @@ const RequestForm: React.FC = () => {
     } 
 
     return (<form onSubmit={handleSubmit} className="shadow border m-4 mb-4 p-4">
-        <h5 className="mb-3">Request Form</h5>
+        <h5 className="mb-3">&#128209; Request Form</h5>
         <div className="mb-3">
             <label className="form-label">Name</label>
             <input value={name} onChange={(e) => setName(e.target.value)} className="form-control"/>
